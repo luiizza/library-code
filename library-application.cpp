@@ -5,22 +5,37 @@
 #include "book.h"
 
 int main() {
+    
+// Create an array of Book - Hardcopys annd EBooks
+    
+    Book* Library[5];
 
-    //An array was created and filled with real data
+    // Fill the array with a mix of HardcopyBook and EBook objects
+    Library[0] = new HardcopyBook();
+    Library[0]->setBookDetails("Silent Moon", "Ana Ribeiro", "111", "2025-10-01");
+    static_cast<HardcopyBook*>(Library[0])->setShelfNumber("A1");
 
-    Book Library[5];
+    Library[1] = new EBook();
+    Library[1]->setBookDetails("Echoes", "Lucas Martins", "112", "2025-10-02");
+    static_cast<EBook*>(Library[1])->setLicenseEndDate("2026-12-31");
 
-    Library[0].setBookDetails("Silent Moon", "Ana Ribeiro", "111", "2025-10-01");
-    Library[1].setBookDetails("Echoes", "Lucas Martins", "112", "2025-10-02");
-    Library[2].setBookDetails("Paper Wings", "Julia Costa", "113", "2025-10-03");
-    Library[3].setBookDetails("Firelight", "Bruno Oliveira", "114", "2025-10-04");
-    Library[4].setBookDetails("Hidden Path", "Carla Mendes", "115", "2025-10-05");
+    Library[2] = new HardcopyBook();
+    Library[2]->setBookDetails("Paper Wings", "Julia Costa", "113", "2025-10-03");
+    static_cast<HardcopyBook*>(Library[2])->setShelfNumber("B2");
+
+    Library[3] = new EBook();
+    Library[3]->setBookDetails("Firelight", "Bruno Oliveira", "114", "2025-10-04");
+    static_cast<EBook*>(Library[3])->setLicenseEndDate("2026-06-30");
+
+    Library[4] = new HardcopyBook();
+    Library[4]->setBookDetails("Hidden Path", "Carla Mendes", "115", "2025-10-05");
+    static_cast<HardcopyBook*>(Library[4])->setShelfNumber("C3");
 
     std::string inputTitle;
-    std::cin.ignore(); 
+    std::cin.ignore();
 
     //This loop keeps asking the user for a book title and displays the appropriate message
-
+    
     while (true) {
         std::cout << "Enter book's title to borrow (0 to exit): ";
         std::getline(std::cin, inputTitle);
@@ -31,10 +46,10 @@ int main() {
         }
 
         bool found = false;
-        for (int i = 0;  i < 5; i++) {
-            if (Library[i].getTitle() == inputTitle) {
+        for (int i = 0; i < 5; i++) {
+            if (Library[i]->getTitle() == inputTitle) {
                 found = true;
-                Library[i].borrowBook();
+                Library[i]->borrowBook();
                 break;
             }
         }
@@ -42,6 +57,12 @@ int main() {
         if (!found) {
             std::cout << "Book not found.\n";
         }
+    }
+
+    // Clean up dynamically allocated memory
+    
+    for (int i = 0; i < 5; i++) {
+        delete Library[i];
     }
 
     return 0;
