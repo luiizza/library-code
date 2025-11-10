@@ -25,7 +25,7 @@ void Book::borrowBook() {
     }
 }
 
-//This method returns the book’s title
+//This method returns the bookâ€™s title
 
 std::string Book::getTitle() {
     return title;
@@ -35,4 +35,21 @@ std::string Book::getTitle() {
 
 bool Book::isAvailable() const {
     return available;
+}
+
+//New change
+void HardcopyBook::setShelfNumber(std::string shelf) {
+    shelfNumber = shelf;
+}
+
+std::string HardcopyBook::getShelfNumber() const {
+    return shelfNumber;
+}
+
+void EBook::setLicenseEndDate(std::string date) {
+    licenseEndDate = date;
+}
+
+std::string EBook::getLicenseEndDate() const {
+    return licenseEndDate;
 }
