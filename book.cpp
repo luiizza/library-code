@@ -54,15 +54,26 @@ std::string EBook::getLicenseEndDate() const {
     return licenseEndDate;
 }
 
-// Selection Sort by title
-void selectionSort(Book arr[], int size) {
-    for (int i = 0; i < size - 1; i++) {
-        int minIndex = i;
-        for (int j = i + 1; j < size; j++) {
-            if (arr[j].getTitle() < arr[minIndex].getTitle()) {
-                minIndex = j;
-            }
+// Quick Sort by title
+int partition(Book arr[], int low, int high) {
+    std::string pivot = arr[high].getTitle();
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (arr[j].getTitle() < pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
         }
-        std::swap(arr[i], arr[minIndex]);
+    }
+    std::swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(Book arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
     }
 }
+
