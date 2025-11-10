@@ -27,5 +27,22 @@ public:
 
 };
 
-#endif
+class HardcopyBook : public Book {
+private:
+    std::string shelfNumber;
 
+public:
+    void setShelfNumber(std::string shelf);
+    std::string getShelfNumber() const;
+};
+
+class EBook : public Book {
+private:
+    std::string licenseEndDate;
+
+public:
+    void setLicenseEndDate(std::string date);
+    std::string getLicenseEndDate() const;
+};
+
+#endif
