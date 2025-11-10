@@ -31,7 +31,7 @@ int main() {
     Library[4]->setBookDetails("Hidden Path", "Carla Mendes", "115", "2025-10-05");
     static_cast<HardcopyBook*>(Library[4])->setShelfNumber("C3");
 
-    bubbleSort(Library, 5);
+    selectionSort(Library, 5);
     
     std::string inputTitle;
     std::cin.ignore();
