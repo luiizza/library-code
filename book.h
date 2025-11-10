@@ -10,7 +10,7 @@ class Book {
 
 //Internal data for each book
 
-private:
+protected: //Changed from privete
     std::string title;
     std::string author;
     std::string ISBN;
@@ -23,6 +23,9 @@ public:
     void borrowBook();
     std::string getTitle();
     bool isAvailable() const;
+    virtual ~Book() {} //New change
+
 };
 
 #endif
+
