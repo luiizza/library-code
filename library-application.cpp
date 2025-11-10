@@ -31,6 +31,8 @@ int main() {
     Library[4]->setBookDetails("Hidden Path", "Carla Mendes", "115", "2025-10-05");
     static_cast<HardcopyBook*>(Library[4])->setShelfNumber("C3");
 
+    bubbleSort(Library, 5);
+    
     std::string inputTitle;
     std::cin.ignore();
 
@@ -58,6 +60,11 @@ int main() {
             std::cout << "Book not found.\n";
         }
     }
+
+    std::cout << "\nSorted Book Titles:\n";
+for (int i = 0; i < 5; i++) {
+    std::cout << Library[i].getTitle() << "\n";
+}
 
     // Clean up dynamically allocated memory
     
