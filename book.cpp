@@ -54,13 +54,15 @@ std::string EBook::getLicenseEndDate() const {
     return licenseEndDate;
 }
 
-// Bubble Sort by title
-void bubbleSort(Book arr[], int size) {
+// Selection Sort by title
+void selectionSort(Book arr[], int size) {
     for (int i = 0; i < size - 1; i++) {
-        for (int j = 0; j < size - i - 1; j++) {
-            if (arr[j].getTitle() > arr[j + 1].getTitle()) {
-                std::swap(arr[j], arr[j + 1]);
+        int minIndex = i;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[j].getTitle() < arr[minIndex].getTitle()) {
+                minIndex = j;
             }
         }
+        std::swap(arr[i], arr[minIndex]);
     }
 }
